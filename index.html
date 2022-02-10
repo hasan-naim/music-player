@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="./images/favIcon.png" />
+    <!-- google font poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;500;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- google icons link -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <title>Music Player</title>
+    <!-- custo style sheet -->
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+  <body>
+    <div class="wrapper">
+        <!-- header of the player -->
+        <div class="top-baar">
+            <i class="material-icons">expand_more</i>
+            <span>Playing Now</span>
+            <i class="material-icons">more_horiz</i>
+        </div>
+        <!-- header of the player -->
+        <!-- Song Image -->
+        <div class="img-area">
+            <img src="" alt="Song">
+        </div>
+        <!-- Song Image -->
+        <!-- song descripttion -->
+        <div class="song-details">
+            <p class="name">Laaree Chootee - Call</p>
+            <p class="artist">feat. Tejas R.H.</p>
+        </div>
+        <!-- song descripttion -->
+        <!-- progress area -->
+        <div class="progress-area">
+            <div class="progress-bar"></div>
+            <div class="timer">
+                <span class="current">0:32</span>
+                <span class="duration">3:02</span>
+            </div>
+             <!-- main audio  -->
+         <audio src="" id="main-audio"></audio>
+         <!-- End main audio  -->
+        </div>
+         <!-- progress area -->
+        
+         <!-- controls -->
+         <div class="controls">
+            <i id="repeat-plist" class="material-icons">repeat</i>
+            <i id="prev" class="material-icons">skip_previous</i>
+            <!-- play pause div -->
+            <div class="play-pause">
+             <i class="material-icons">play_arrow</i>
+            </div>
+            <!-- play pause div -->
+            <i id="next" class="material-icons">skip_next</i>
+            <i id="more-music" class="material-icons">queue_music</i>
+         </div>
+         <!-- controls -->
+         <!-- music list -->
+         <div class="music-list">
+           <!-- top seciton -->
+           <div class="header">
+             <div class="row">
+                <i class="material-icons">queue_music</i>
+                <span>Music List</span>
+             </div>
+             <i id="close" class="material-icons">close</i>
+           </div>
+            <!-- End top seciton -->
+             <!-- Lists -->
+           <ul>
+            <li>
+              <div class="row">
+                <span>LEVEL FIVE</span>
+                <p>60's LOVE</p>
+              </div>
+              <span class="audio-duration">3:08</span>
+            </li>
+            <li>
+              <div class="row">
+                <span>LEVEL FIVE</span>
+                <p>60's LOVE</p>
+              </div>
+              <span class="audio-duration">3:08</span>
+            </li>
+            <li>
+              <div class="row">
+                <span>LEVEL FIVE</span>
+                <p>60's LOVE</p>
+              </div>
+              <span class="audio-duration">3:08</span>
+            </li>
+            <li>
+              <div class="row">
+                <span>LEVEL FIVE</span>
+                <p>60's LOVE</p>
+              </div>
+              <span class="audio-duration">3:08</span>
+            </li>
+            <li>
+              <div class="row">
+                <span>LEVEL FIVE</span>
+                <p>60's LOVE</p>
+              </div>
+              <span class="audio-duration">3:08</span>
+            </li>
+            <li>
+              <div class="row">
+                <span>LEVEL FIVE</span>
+                <p>60's LOVE</p>
+              </div>
+              <span class="audio-duration">3:08</span>
+            </li>
+            <li>
+              <div class="row">
+                <span>LEVEL FIVE</span>
+                <p>60's LOVE</p>
+              </div>
+              <span class="audio-duration">3:08</span>
+            </li>
+            <li>
+              <div class="row">
+                <span>LEVEL FIVE</span>
+                <p>60's LOVE</p>
+              </div>
+              <span class="audio-duration">3:08</span>
+            </li>
+            <li>
+              <div class="row">
+                <span>LEVEL FIVE</span>
+                <p>60's LOVE</p>
+              </div>
+              <span class="audio-duration">3:08</span>
+            </li>
+          </ul>
+          <!--End Lists -->
+          </div>
+          <!--End music list -->
+    </div>
+
+    <script src="./js/musicList.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
