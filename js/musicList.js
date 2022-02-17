@@ -26,5 +26,5 @@ let musicList = [
         img:  "pic4",
         src: "music4"
 
-    },
+    }
 ]

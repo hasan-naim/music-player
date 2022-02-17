@@ -190,21 +190,23 @@ a ,
 i{
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
-
+i::selection{
+    user-select: none;
+}
 
 
 .music-list{
     position: absolute;
     bottom: -65%;
     left: 0;
-    opacity: 0;
+    opacity: 1;
     background: var(--bg);
     box-shadow: 0px -6px 10px var(--shadow-for-bg-black);
     border-radius: 15px;
     width: 100%;
     padding: 15px 30px;
     pointer-events: none;
-    transition: all var(--sidebar-transition);
+    transition: all .4s;
 }
 .music-list.show{
     opacity: 1;
@@ -245,9 +247,16 @@ i{
     list-style: none;
     padding-bottom: 10px;
     margin-bottom: 5px;
-    border-bottom: 1px solid rgb(116, 116, 116);
+    border-bottom: 1px solid rgb(19, 19, 19);
     cursor: pointer;
     color: var(--gray);
+}
+.music-list ul li.playing{
+    background: var(--hover-overlay);
+    cursor: default;
+}
+.music-list ul li:hover{
+    background: var(--hover-overlay);
 }
 .music-list ul li:last-child{
     border-bottom: 0;

@@ -12,7 +12,27 @@ const prevBtn = document.querySelector("#prev");
 const progressArea = document.querySelector(".progress-area");
 const progressBar = document.querySelector(".progress-bar");
 const musicCurrentTimeElem = wrapper.querySelector(".current");
-const musicdurationElem = wrapper.querySelector(".duration");
+const musciListDiv= wrapper.querySelector(".music-list");
+const ulTag= wrapper.querySelector("ul");
+
+
+// selecting elements
+const elements = {
+    repeatBtn : selectElem("#repeat"),
+    musicdurationElem: selectElem(".duration"),
+    moreMusicBtn : selectElem("#more-music"),
+    hideMoreMusic : selectElem("#close")
+}
+
+
+function selectElem (elem){
+    const element = document.querySelector(elem)
+    return element
+}
+function selectMulElem (elem){
+    const element = document.querySelectorAll(elem)
+    return element
+}
 
 
 
@@ -22,6 +42,7 @@ let musicIndex = 2;
 window.addEventListener("load", ()=> {
     // calling loadMusic function to load music when website is loaded
     loadMusic(musicIndex);
+    playingNow()
 
 })
 
@@ -127,7 +148,7 @@ mainAudio.addEventListener("timeupdate", (event) => {
     // that's why i am takeing another event listener(loadeddata)
     mainAudio.addEventListener("loadeddata", () => {        
         // updating duration
-        musicdurationElem.innerText = convertMilliSec(mainAudio.duration);
+        elements.musicdurationElem.innerText = convertMilliSec(mainAudio.duration);
     })
 
   
@@ -160,12 +181,132 @@ function convertMilliSec(millis) {
 
 
 
+// code for repeat button
+
+elements.repeatBtn.addEventListener("click", ()=> {
+    // first get the inner text of the icon
+
+    let getText = elements.repeatBtn.innerText;
+    //then check and change the icon
+
+    switch (getText) {
+        case "repeat":
+            elements.repeatBtn.innerText = "repeat_one";
+            elements.repeatBtn.setAttribute("title", "repeat this playlist")
+            break;
+        case "repeat_one":
+            elements.repeatBtn.innerText = "shuffle";
+            elements.repeatBtn.setAttribute("title", "repeat none")
+        break;
+        case "shuffle":
+            elements.repeatBtn.innerText = "repeat";
+            elements.repeatBtn.setAttribute("title", "repeat this song")
+        break;
+
+        default:
+            break;
+    }
+    
+})
+
+// play music acording to the repeat button
+
+mainAudio.addEventListener("ended", () => {
+    let getText = elements.repeatBtn.innerText;
+    //then check and change the icon
+
+    switch (getText) {
+        // if the icon is repeat we will simply play the next song
+        case "repeat":
+            nextMusic()
+
+            break;
+        // if icon is repeat one song then we will change the current time to 0    
+        case "repeat_one":
+            mainAudio.currentTime = 0
+            playMusic()
+            break;
+        case "shuffle":
+            
+            nextMusic()
+        break;
+
+        default:
+            break;
+    }
+})
 
 
+// more music list
 
 
+elements.moreMusicBtn.addEventListener("click", ()=>{
+    musciListDiv.classList.toggle("show")
 
 
+})
+
+elements.hideMoreMusic.addEventListener("click" ,() => {
+    elements.moreMusicBtn.click()
+})
+
+// print li into ul
+
+musicList.forEach(element => {
+    const html = `<li>
+    <div class="row">
+      <span>${element.name}</span>
+      <p>${element.artist}</p>
+    </div>
+    <audio src="./musics/${element.src}.mp3" id=${element.src}></audio>
+    <span class=${element.src}></span>
+  </li>
+  `
+
+  ulTag.insertAdjacentHTML("beforeend", html)
+
+  let liAudio = selectElem(`#${element.src}`)
+  let liDuration = selectElem(`.${element.src}`)
+  liAudio.addEventListener("loadeddata", () => {        
+    // updating duration
+    
+    liDuration.innerText = convertMilliSec(liAudio.duration);
+})
+
+  
+});
+
+// playing particular song on click
+
+function playingNow() {
+    const allLiTag= document.querySelectorAll("ul li");
+
+allLiTag.forEach((element, index)=>{
+    element.setAttribute("onclick", "clickFunc(this)")
+    element.setAttribute("li-index", `${index}`)
+
+    if(element.classList.contains("playing")){
+        element.classList.remove("playing")
+    }
+    // if there is a li tag that match musicIndex
+    //that means that song is playing and we will style it
+
+    if(element.getAttribute("li-index") == musicIndex){
+        element.classList.add("playing")
+    }
+
+    
+})
+}
+
+
+function clickFunc(element){
+    let getIndex = element.getAttribute("li-index")
+    musicIndex = getIndex;
+    loadMusic(musicIndex)
+    playMusic()
+    playingNow()
+}
 
 
 
